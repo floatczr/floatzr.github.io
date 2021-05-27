@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2021-05-26T11:07:57.740Z</updated>
+  <updated>2021-05-27T09:02:47.989Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>水印</title>
+    <link href="http://example.com/2021/05/27/%E6%B0%B4%E5%8D%B0/"/>
+    <id>http://example.com/2021/05/27/%E6%B0%B4%E5%8D%B0/</id>
+    <published>2021-05-27T08:56:54.000Z</published>
+    <updated>2021-05-27T09:02:47.989Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="文字水印"><a href="#文字水印" class="headerlink" title="文字水印"></a>文字水印</h2><p>跟昨天的验证码大同小异，无非是一些方法的调用  </p><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">header(<span class="string">&#x27;Content-type:image/jpeg&#x27;</span>);</span><br><span class="line"><span class="comment">//设置content-type为jpeg格式</span></span><br><span class="line"><span class="variable">$img</span> = imagecreatefromjpeg(<span class="string">&#x27;C:/wamp64/www/myPhp/imgs/ps.jpg&#x27;</span>);</span><br><span class="line"><span class="comment">//打开对应路径下的jpg文件（也可以使用url地址定位网络上的一张图片）</span></span><br><span class="line"><span class="variable">$width</span> = imagesx(<span class="variable">$img</span>);</span><br><span class="line"><span class="variable">$height</span> = imagesy(<span class="variable">$img</span>);</span><br><span class="line"><span class="comment">//获取图片的长宽</span></span><br><span class="line"><span class="variable">$position</span> = imagettfbbox(<span class="number">14</span>,<span class="number">0</span>,<span class="string">&#x27;C:/wamp64/www/myPhp/font/tancai.TTC&#x27;</span>,<span class="string">&#x27;周睿&#x27;</span>);</span><br><span class="line"><span class="comment">//判断输入字符串各个角的所在坐标</span></span><br><span class="line"><span class="variable">$strWidth</span> = <span class="variable">$position</span>[<span class="number">2</span>]-<span class="variable">$position</span>[<span class="number">0</span>];</span><br><span class="line"><span class="comment">//根据获取到的坐标来判断所输入字符串的长度</span></span><br><span class="line"><span class="variable">$color</span> = imagecolorallocate(<span class="variable">$img</span>,<span class="number">255</span>,<span class="number">255</span>,<span class="number">255</span>);</span><br><span class="line"><span class="comment">//设置水印的字体颜色</span></span><br><span class="line">imagettftext(<span class="variable">$img</span>,<span class="number">100</span>,<span class="number">0</span>,<span class="variable">$width</span>-<span class="number">1</span>-<span class="variable">$strWidth</span>-(<span class="variable">$width</span>/<span class="number">3</span>),<span class="variable">$height</span>-(<span class="variable">$height</span>/<span class="number">20</span>),<span class="variable">$color</span>,<span class="string">&#x27;C:/wamp64/www/myPhp/font/tancai.TTC&#x27;</span>,<span class="string">&#x27;周睿&#x27;</span>);</span><br><span class="line"><span class="comment">//设置水印的字体大小，倾斜角度，开始坐标（从左下角开始），字体颜色，字体格式和写入的内容</span></span><br><span class="line">imagejpeg(<span class="variable">$img</span>);</span><br><span class="line"><span class="comment">//输出指定的jpg文件</span></span><br><span class="line">imagedestroy(<span class="variable">$img</span>);</span><br><span class="line"><span class="comment">//销毁文件，释放资源</span></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure><h2 id="图片水印"><a href="#图片水印" class="headerlink" title="图片水印"></a>图片水印</h2><p>在文字水印的基础上增加了另外一张图片而已  </p><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">header(<span class="string">&#x27;Content-type:image/jpeg&#x27;</span>);</span><br><span class="line"><span class="comment">//设置content-type为jpeg格式</span></span><br><span class="line"><span class="variable">$img</span> = imagecreatefromjpeg(<span class="string">&#x27;C:/wamp64/www/myPhp/imgs/ps.jpg&#x27;</span>);</span><br><span class="line"><span class="comment">//打开对应路径下的jpg文件（也可以使用url地址定位网络上的一张图片）</span></span><br><span class="line"><span class="variable">$width</span> = imagesx(<span class="variable">$img</span>);</span><br><span class="line"><span class="variable">$height</span> = imagesy(<span class="variable">$img</span>);</span><br><span class="line"><span class="comment">//获取图片的长宽</span></span><br><span class="line"><span class="variable">$water</span> = imagecreatefrompng(<span class="string">&#x27;C:/wamp64/www/myPhp/imgs/1.png&#x27;</span>);</span><br><span class="line"><span class="comment">//获取水印图片</span></span><br><span class="line">imagecopymerge(<span class="variable">$img</span>,<span class="variable">$water</span>,<span class="number">600</span>,<span class="number">700</span>,<span class="number">70</span>,<span class="number">50</span>,imagesx(<span class="variable">$water</span>)-<span class="number">150</span>,imagesy(<span class="variable">$water</span>)-<span class="number">150</span>,<span class="number">20</span>);</span><br><span class="line"><span class="comment">//将水影图片拷贝到目标图片上</span></span><br><span class="line"><span class="comment">//imagecopy参数依次为:目标图片,水印图片,目标图片的初始位置(x,y),水印的开始拷贝位置(x,y),水印图片的拷贝长度,水印图片的拷贝高度,水印透明度(0-100)</span></span><br><span class="line">imagejpeg(<span class="variable">$img</span>);</span><br><span class="line"><span class="comment">//输出指定的jpg文件</span></span><br><span class="line">imagedestroy(<span class="variable">$img</span>);</span><br><span class="line"><span class="comment">//销毁文件，释放资源</span></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure><p>总体来说还是非常简单的</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;文字水印&quot;&gt;&lt;a href=&quot;#文字水印&quot; class=&quot;headerlink&quot; title=&quot;文字水印&quot;&gt;&lt;/a&gt;文字水印&lt;/h2&gt;&lt;p&gt;跟昨天的验证码大同小异，无非是一些方法的调用  &lt;/p&gt;
+&lt;figure class=&quot;highlight php&quot;&gt;&lt;ta</summary>
+      
+    
+    
+    
+    
+    <category term="php" scheme="http://example.com/tags/php/"/>
+    
+  </entry>
   
   <entry>
     <title>验证码</title>
